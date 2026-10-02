@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kyeongryeol Go</title>
+<meta name="description" content="Kyeongryeol (Andre) Go — Machine Learning Engineer at Superb AI working on vision foundation models, data-centric AI, and uncertainty quantification.">
+<meta property="og:title" content="Kyeongryeol Go">
+<meta property="og:description" content="Machine Learning Engineer · Vision foundation models, data-centric AI, uncertainty quantification.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gokyeongryeol.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231f4e8c'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'>KG</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f7f9; --text:#1c1f24; --muted:#5d6570; --faint:#8a929c;
+  --line:#e4e7eb; --accent:#1f4e8c; --accent-soft:#e8eef7; --gold:#9a6b00; --gold-soft:#fbf3df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1216; --surface:#171b21; --text:#e6e9ed; --muted:#a3abb5; --faint:#77808b;
+    --line:#262c34; --accent:#7fb0f0; --accent-soft:#1a2738; --gold:#e3b54a; --gold-soft:#2a2414;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1216; --surface:#171b21; --text:#e6e9ed; --muted:#a3abb5; --faint:#77808b;
+  --line:#262c34; --accent:#7fb0f0; --accent-soft:#1a2738; --gold:#e3b54a; --gold-soft:#2a2414;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.nav .wrap{display:flex;align-items:center;gap:16px;height:56px}
+.brand{font-family:"Source Serif 4",Georgia,serif;font-weight:700;font-size:17px;color:var(--text);white-space:nowrap}
+.brand:hover{text-decoration:none}
+.brand{opacity:0;transform:translateY(4px);pointer-events:none;transition:opacity .2s,transform .2s}
+.brand.show{opacity:1;transform:none;pointer-events:auto}
+nav.links{display:flex;gap:18px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav.links::-webkit-scrollbar{display:none}
+nav.links a{color:var(--muted);font-size:13.5px;font-weight:500;white-space:nowrap}
+nav.links a:hover{color:var(--text);text-decoration:none}
+.theme-btn{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:8px;width:34px;height:34px;display:grid;place-items:center;cursor:pointer;flex:none}
+.theme-btn:hover{color:var(--text)}
+
+/* hero */
+.hero{padding:56px 0 24px;display:grid;grid-template-columns:1fr 200px;gap:32px;align-items:start}
+.hero-text{display:grid;gap:12px;min-width:0}
+.photo{width:200px;height:200px;border-radius:50%;object-fit:cover;border:1px solid var(--line);margin-top:6px}
+.hero h1{font-family:"Source Serif 4",Georgia,serif;font-size:36px;line-height:1.15;margin:0;letter-spacing:-.01em}
+.hero h1 .nick{color:var(--muted);font-weight:600}
+.hero .role{font-size:16.5px;color:var(--muted);margin:0}
+.hero .role a{font-weight:500}
+.hero p.bio{margin:12px 0 0;max-width:68ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{background:var(--accent-soft);color:var(--accent);font-size:12.5px;font-weight:500;padding:4px 10px;border-radius:999px}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.social a{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:13px;font-weight:500;color:var(--text);background:var(--surface)}
+.social a:hover{border-color:var(--accent);text-decoration:none}
+.social svg{width:16px;height:16px;fill:currentColor}
+
+/* sections */
+section{padding:28px 0;border-top:1px solid var(--line)}
+section h2{font-family:"Source Serif 4",Georgia,serif;font-size:22px;margin:0 0 18px}
+.sub{color:var(--muted);font-size:13px;margin:-10px 0 18px}
+
+
+/* publications */
+.pub{padding:12px 0;display:grid;grid-template-columns:118px 1fr;gap:16px;border-bottom:1px dashed var(--line)}
+.pub:last-child{border-bottom:0}
+.venue{font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 6px;text-align:center;align-self:start;line-height:1.35;white-space:nowrap}
+.pub .title{font-weight:400}
+.pub .authors{color:var(--muted);font-size:13.5px}
+.me{color:var(--text);font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--faint)}
+.pub .meta{color:var(--faint);font-size:13px}
+.pub .meta a{font-weight:500}
+.note{color:var(--faint);font-size:13px;margin-top:10px}
+
+/* generic entries */
+.entry{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:10px 0}
+.entry .what{font-weight:400}
+.entry .what .aside{color:var(--faint)}
+.entry .org{font-weight:600}
+.entry .when{color:var(--faint);font-size:13px;white-space:nowrap;text-align:right}
+.entry .detail{grid-column:1/-1;color:var(--muted);font-size:14px}
+.entry ul{grid-column:1/-1;margin:6px 0 0;padding-left:20px;color:var(--muted);font-size:14px}
+.entry ul li{margin:2px 0}
+.medal{display:inline-block;font-size:12px;font-weight:600;color:var(--gold);background:var(--gold-soft);border-radius:6px;padding:1px 7px;margin-right:6px;vertical-align:1px}
+.region{font-size:12px;color:var(--faint);white-space:nowrap}
+details summary{cursor:pointer;color:var(--accent);font-weight:500;font-size:13px;margin-top:6px}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--faint);font-size:13px}
+
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .hero{padding-top:36px}
+  .hero h1{font-size:29px}
+  .hero{grid-template-columns:1fr;gap:20px}
+  .photo{width:140px;height:140px;order:-1;margin-top:0}
+  nav.links{display:none}
+  .pub{grid-template-columns:1fr;gap:6px}
+  .venue{justify-self:start}
+  .entry{grid-template-columns:1fr}
+  .entry .when{text-align:left}
+}
+</style>
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Kyeongryeol Go</a>
+    <nav class="links">
+      <a href="#awards">Awards</a>
+      <a href="#papers">Papers</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#patents">Patents</a>
+      <a href="#talks">Talks</a>
+      <a href="#education">Education</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <div class="hero" id="hero">
+    <div class="hero-text">
+    <h1>Kyeongryeol Go <span class="nick">(Andre)</span></h1>
+    <p class="role">Machine Learning Engineer at <a href="https://superb-ai.com">Superb AI</a> · Seoul, South Korea</p>
+    <p class="bio">
+      I lead the vision foundation model task force at Superb AI, where I develop <b>ZERO</b>, an industry-ready
+      model for open-set visual grounding, and the data engines around it. I received both my B.S. and M.S. from KAIST.
+    </p>
+    <p class="bio">
+      I care about research that holds up in the real world, and I like carrying a hard problem all the way from
+      an idea to a model that customers deploy. I enjoy working in collaborative teams, and I believe we grow
+      together through persistence: sharing what we learn and staying with a problem until it is truly solved.
+    </p>
+    <div class="chips">
+      <span class="chip">Vision Foundation Models</span>
+      <span class="chip">Data-centric AI</span>
+      <span class="chip">Uncertainty Quantification</span>
+    </div>
+    <div class="social">
+      <a href="mailto:kyeongryeol.go@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5z"/></svg>Email</a>
+      <a href="https://scholar.google.com/citations?user=8pGx-lYAAAAJ&amp;hl=en"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2v3.6L12 21l7-4.2v-3.6L12 17z"/></svg>Scholar</a>
+      <a href="https://linkedin.com/in/kyeongryeol-go"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18H5.7V9.7h2.6zM7 8.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM18.3 18h-2.6v-4c0-1-.1-2.2-1.4-2.2s-1.6 1-1.6 2.1V18H10V9.7h2.5v1.1c.4-.7 1.2-1.4 2.6-1.4 2.7 0 3.2 1.8 3.2 4.1z"/></svg>LinkedIn</a>
+      <a href="https://github.com/gokyeongryeol"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7 1 .7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>GitHub</a>
+    </div>
+    </div>
+    <img class="photo" src="assets/profile.jpg" alt="Kyeongryeol Go at Garden of the Gods, Colorado" width="200" height="200">
+  </div>
+
+
+  <section id="awards">
+    <h2>Awards</h2>
+    <div class="entry">
+      <div class="what"><span class="medal">1st</span><a href="https://eval.ai/web/challenges/challenge-page/2672/overview">Foundational Few-shot Object Detection Challenge</a></div>
+      <div class="detail">CVPR 2026 Workshop: Open-World Vision</div>
+    </div>
+    <div class="entry">
+      <div class="what"><span class="medal">2nd</span><a href="https://eval.ai/web/challenges/challenge-page/2478/overview">Object Instance Detection Challenge</a></div>
+      <div class="detail">CVPR 2025 Workshop: Visual Perception via Learning in an Open World</div>
+    </div>
+    <div class="entry">
+      <div class="what"><span class="medal">1st</span><a href="https://www.hscaichallenge.com/ir-instance-segmentation-2025">Infrared Instance Segmentation Challenge</a></div>
+      <div class="detail">ICRA 2025 Workshop: Thermal Infrared in Robotics</div>
+    </div>
+    <div class="entry">
+      <div class="what"><span class="medal">1st</span><a href="https://ise.kaist.ac.kr/ie-frontier">IE Frontier Competition</a></div>
+      <div class="detail">KAIST 2018 ISysE Research Day</div>
+    </div>
+  </section>
+
+  <section id="papers">
+    <h2>Papers</h2>
+    <p class="sub">* denotes equal contribution</p>
+
+    <div class="pub">
+      <span class="venue">NeurIPS 2026 W</span>
+      <div>
+        <div class="title">Agentic Search for Deployment-Specific Configuration of Promptable Detectors</div>
+        <div class="authors"><span class="me">Kyeongryeol Go</span></div>
+        <div class="meta">NeurIPS 2026 Workshop: Agentic AI Benchmarks and Applications for Enterprise Tasks</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="venue">Solution Report</span>
+      <div>
+        <div class="title">Discover the Unknown and Reconsider the Known: Specializing Multimodal Promptable Detectors for Diverse Domains</div>
+        <div class="authors"><span class="me">Kyeongryeol Go*</span>, Hyundong Jin*, Taewoong Jang, Wooseong Choi</div>
+        <div class="meta">CVPR 2026 Workshop: Open-World Vision (challenge solution report) · <a href="https://neeharperi.com/files/superb_ai_techreport_cvprw26.pdf">LINK</a></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="venue">CVPR 2026 W</span>
+      <div>
+        <div class="title">Towards Continual Expansion of Data Coverage: Automatic Text-guided Edge-case Synthesis</div>
+        <div class="authors"><span class="me">Kyeongryeol Go</span></div>
+        <div class="meta">CVPR 2026 Workshop: How Do Vision Models Work · <a href="https://openreview.net/forum?id=KbPCMtgdkG">LINK</a></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="venue">arXiv 2025</span>
+      <div>
+        <div class="title">ZERO: Industry-ready Vision Foundation Model with Multi-modal Prompts</div>
+        <div class="authors">Sangbum Choi*, <span class="me">Kyeongryeol Go*</span>, Taewoong Jang*</div>
+        <div class="meta">arXiv pre-print · <a href="https://arxiv.org/abs/2507.04270">LINK</a></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="venue">arXiv 2025</span>
+      <div>
+        <div class="title">Edge-case Synthesis for Fisheye Object Detection: A Data-centric Perspective</div>
+        <div class="authors">Seunghyeon Kim*, <span class="me">Kyeongryeol Go*</span></div>
+        <div class="meta">arXiv pre-print · <a href="https://arxiv.org/abs/2507.16254">LINK</a></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="venue">NeurIPS 2023 W</span>
+      <div>
+        <div class="title">Transferable Candidate Proposal with Bounded Uncertainty</div>
+        <div class="authors"><span class="me">Kyeongryeol Go</span>, Kye-Hyeon Kim</div>
+        <div class="meta">NeurIPS 2023 Workshop: Adaptive Experimental Design and Active Learning in the Real World · <a href="https://openreview.net/forum?id=yPlkx5u4cg">LINK</a></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="venue">IEEE Access</span>
+      <div>
+        <div class="title">Meta-Learning amidst Heterogeneity and Ambiguity</div>
+        <div class="authors"><span class="me">Kyeongryeol Go</span>, Mingyu Kim, Seyoung Yun</div>
+        <div class="meta">IEEE Access, vol. 11 · <a href="https://ieeexplore.ieee.org/document/9982600">LINK</a></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <span class="venue">ICLR 2022</span>
+      <div>
+        <div class="title">Neural Processes with Stochastic Attention: Paying more attention to the context dataset</div>
+        <div class="authors">Mingyu Kim, <span class="me">Kyeongryeol Go</span>, Seyoung Yun</div>
+        <div class="meta">ICLR 2022 · <a href="https://openreview.net/forum?id=JPkQwEdYn8">LINK</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="entry">
+      <div class="what">Machine Learning Engineer · <span class="org">Superb AI</span> <span class="aside">(YC W19)</span></div>
+      <div class="when">Oct 2022 – Present</div>
+      <ul>
+        <li>Lead the vision foundation model task force across R&amp;D, productization, and technical sales</li>
+        <li>Develop ZERO, an industry-ready vision foundation model tailored for open-set visual grounding</li>
+        <li>Build a self-evolving agent for ZERO that autonomously discovers optimal adaptation settings</li>
+        <li>Integrate a training-free, negative-prompt-aware logit adjustment method into ZERO for user interaction</li>
+        <li>Engineer a scalable multi-node auto-labeling pipeline for large-scale foundation model training</li>
+        <li>Develop a data-centric edge-case synthetic image generation pipeline using an instruction-tuned LLM</li>
+        <li>Establish a hard-data mining framework transferable across diverse training configurations</li>
+        <li>Architect a modular suite of fine-tuning assistants for object detection, OCR, and image generation</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="what">Machine Learning Engineer · <span class="org">Spacewalk</span></div>
+      <div class="when">Sep 2021 – Sep 2022</div>
+      <ul>
+        <li>Developed an offline RL agent for real-world lettuce cultivation that outperformed expert policies</li>
+        <li>Developed an online RL agent for building design that maximizes rental profit under legal constraints</li>
+        <li>Standardized the common code base to streamline experiments and boost team productivity</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="what">Data Analyst Intern · <span class="org">SK Hynix</span></div>
+      <div class="when">Jun 2019 – Aug 2019</div>
+      <div class="detail">Feature engineering to improve an anomaly detector in semiconductor manufacturing</div>
+    </div>
+    <div class="entry">
+      <div class="what">Research Intern · <span class="org">KAIST AAI Lab</span></div>
+      <div class="when">Dec 2018 – Feb 2019</div>
+    </div>
+    <div class="entry">
+      <div class="what">Research Intern · <span class="org">KAIST DAIM Lab</span></div>
+      <div class="when">Jun 2018 – Aug 2018</div>
+    </div>
+
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="entry"><div class="what">VFM-based threat awareness system deployed on a vendor-specific NPU</div><div class="when">Jun 2026</div></div>
+    <div class="entry"><div class="what">Safety-monitoring video analytics for PPE compliance and hazard alerts</div><div class="when">Apr 2026</div></div>
+    <div class="entry"><div class="what">Object detection &amp; OCR training pipeline integrated into an on-premise MLOps platform</div><div class="when">Feb 2026</div></div>
+    <div class="entry"><div class="what">Synthetic image generation for rarely occurring objects in iron scrapyards</div><div class="when">Oct 2025</div></div>
+    <div class="entry"><div class="what">Metal weld anomaly detection with interleaved VLM reasoning</div><div class="when">Sep 2025</div></div>
+    <div class="entry"><div class="what">Mask-conditioned road-scene generation for autonomous driving data</div><div class="when">May 2025</div></div>
+  </section>
+
+  <section id="patents">
+    <h2>Patents</h2>
+    <div class="entry"><div class="what">Method for training visual grounding model by using pseudo label of image and learning device using the same</div><div class="when region">US · JP · KR</div><div class="detail"><span class="me">Kyeongryeol Go</span></div></div>
+    <div class="entry"><div class="what">Method for generating training data to be used for training machine learning model and training data generating device using the same</div><div class="when region">US · JP · KR</div><div class="detail"><span class="me">Kyeongryeol Go</span>, Sangbum Choi</div></div>
+    <div class="entry"><div class="what">Method for training caption rephrasing model to allow edge-case data to be generated and learning device using the same</div><div class="when region">US · JP · KR</div><div class="detail"><span class="me">Kyeongryeol Go</span></div></div>
+    <details>
+      <summary>Show 5 more</summary>
+      <div class="entry"><div class="what">Method for evaluating performance of a second object detection model for edge case data acquired based on prediction results of a first object detection model and computing device using the same</div><div class="when region">JP · KR</div><div class="detail"><span class="me">Kyeongryeol Go</span></div></div>
+      <div class="entry"><div class="what">Method for training image generation model to allow images to be generated based on prediction uncertainty of identification model and learning device using the same</div><div class="when region">JP · KR</div><div class="detail"><span class="me">Kyeongryeol Go</span></div></div>
+      <div class="entry"><div class="what">Method for training and testing controllable image generation model capable of reflecting fine-grained instance layout and learning device and testing device using the same</div><div class="when region">JP · KR</div><div class="detail"><span class="me">Kyeongryeol Go</span>, Seunghyun Kim</div></div>
+      <div class="entry"><div class="what">Method for generating image based on instance layout and computing device using the same</div><div class="when region">JP · KR</div><div class="detail"><span class="me">Kyeongryeol Go</span></div></div>
+      <div class="entry"><div class="what">Method for detecting at least one object in an input image by using an extended cropped image and computing device using the same</div><div class="when region">KR</div><div class="detail">Taewoong Jang, <span class="me">Kyeongryeol Go</span>, Sangbum Choi</div></div>
+    </details>
+  </section>
+
+  <section id="talks">
+    <h2>Talks</h2>
+    <div class="entry"><div class="what">ZERO for Self-Evolving Industrial Vision Agents</div><div class="when">Aug 2026</div><div class="detail"><span class="org">AWS Marketplace</span> · Discovering optimal adaptation settings from just 10 images</div></div>
+    <div class="entry"><div class="what">How ML Engineers Drive Business Impact through R&amp;D</div><div class="when">Jan 2026</div><div class="detail"><span class="org">Superb AI</span> · Three practical case studies bridging research and business</div></div>
+    <div class="entry"><div class="what">Building an Industry-ready, Multi-domain Vision Foundation Model</div><div class="when">Dec 2025</div><div class="detail"><span class="org">AICA</span> · GPU-driven scaling and performance optimization strategies</div></div>
+    <div class="entry"><div class="what">Unlocking the Potential of Synthetic Data through Training Curricula</div><div class="when">May 2025</div><div class="detail"><span class="org">ICRA 2025</span> · 1st place solution of the infrared instance segmentation challenge</div></div>
+    <div class="entry"><div class="what">An Overview of Reinforcement Learning</div><div class="when">Feb 2024</div><div class="detail"><span class="org">AI Robotics KR</span> · From classical RL to multi-agent systems</div></div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="what">M.S. in Artificial Intelligence · <span class="org">KAIST</span></div>
+      <div class="when">Sep 2019 – Aug 2021</div>
+      <div class="detail">Advised by Prof. Seyoung Yun, <a href="https://osi.kaist.ac.kr/">OSI Lab</a></div>
+      <ul>
+        <li>Full Academic Scholarship (KAIST)</li>
+        <li>Industry-Academia Scholarship (SK Hynix)</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="what">B.S. in Industrial and Systems Engineering · <span class="org">KAIST</span></div>
+      <div class="when">Mar 2015 – Aug 2019</div>
+      <div class="detail">Minor in Economics</div>
+      <ul>
+        <li>Full Academic Scholarship (KAIST)</li>
+        <li>Honor Student Scholarship (KAIST)</li>
+        <li>Song Hyun Scholarship (KAIST ISysE)</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="leadership">
+    <h2>Leadership</h2>
+    <div class="entry"><div class="what">President, Industrial and Systems Engineering Department · <span class="org">KAIST</span></div><div class="when">Jan 2017 – Dec 2017</div></div>
+    <div class="entry"><div class="what">Lead, Overseas Volunteer Group Education Team · <span class="org">COPION</span></div><div class="when">Dec 2016 – Feb 2017</div></div>
+    <div class="entry"><div class="what">Organizer · <span class="org">TEDxKAIST</span></div><div class="when">Mar 2015 – Dec 2016</div></div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Kyeongryeol Go · Last updated October 2026</div>
+</footer>
+
+<script>
+(function(){
+  var brand=document.querySelector('.brand'),hero=document.getElementById('hero');
+  if(!('IntersectionObserver' in window)){brand.classList.add('show');return;}
+  new IntersectionObserver(function(e){brand.classList.toggle('show',!e[0].isIntersecting);},{rootMargin:'-56px 0px 0px 0px'}).observe(hero.querySelector('h1'));
+})();
+document.getElementById('themeBtn').addEventListener('click',function(){
+  var root=document.documentElement;
+  var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  var next=cur==='dark'?'light':'dark';
+  root.setAttribute('data-theme',next);
+  try{localStorage.setItem('theme',next);}catch(e){}
+});
+</script>
+</body>
+</html>
